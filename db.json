@@ -1,0 +1,108 @@
+{
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Завершити проект UnityFund",
+        "description": "Закінчити реалізацію інвестицій та кешування запитів",
+        "completed": false,
+        "createdAt": "2025-03-17T12:00:00.000Z",
+        "dueDate": "2025-03-20T23:59:59.999Z"
+      },
+      {
+        "id": 2,
+        "title": "Вивчити стейкінг у Web3",
+        "completed": false,
+        "createdAt": "2025-03-17T12:00:00.000Z"
+      },
+      {
+        "id": 3,
+        "title": "Закінчити курс Solidity",
+        "description": "Дивитися уроки та робити завдання",
+        "completed": false,
+        "createdAt": "2025-03-17T12:00:00.000Z",
+        "dueDate": "2025-04-01T23:59:59.999Z"
+      },
+      {
+        "id": 4,
+        "title": "Додати Redux у проект",
+        "completed": true,
+        "createdAt": "2025-03-10T10:30:00.000Z"
+      },
+      {
+        "id": 5,
+        "title": "Написати документацію до UnityFund",
+        "completed": false,
+        "createdAt": "2025-03-15T08:15:00.000Z",
+        "dueDate": "2025-03-25T23:59:59.999Z"
+      },
+      {
+        "id": 6,
+        "title": "Дослідити Solana для фронтенду",
+        "completed": false,
+        "createdAt": "2025-03-12T14:00:00.000Z"
+      },
+      {
+        "id": 7,
+        "title": "Підготуватися до співбесіди у Web3",
+        "completed": false,
+        "createdAt": "2025-03-18T09:45:00.000Z"
+      },
+      {
+        "id": 8,
+        "title": "Реалізувати сторінку огляду у UnityFund",
+        "completed": true,
+        "createdAt": "2025-03-14T16:20:00.000Z"
+      },
+      {
+        "id": 9,
+        "title": "Виправити баги у краудфандинговому контракті",
+        "completed": false,
+        "createdAt": "2025-03-16T11:50:00.000Z"
+      },
+      {
+        "id": 10,
+        "title": "Підготувати презентацію про DAO",
+        "completed": false,
+        "createdAt": "2025-03-13T13:05:00.000Z",
+        "dueDate": "2025-03-22T23:59:59.999Z"
+      },
+      {
+        "id": 11,
+        "title": "Оновити документацію до смарт-контрактів",
+        "completed": false,
+        "createdAt": "2025-03-19T17:30:00.000Z"
+      },
+      {
+        "id": 12,
+        "title": "Дослідити можливості NFT у UnityFund",
+        "completed": false,
+        "createdAt": "2025-03-17T18:15:00.000Z"
+      },
+      {
+        "id": 13,
+        "title": "Оптимізувати запити до контракту",
+        "completed": true,
+        "createdAt": "2025-03-15T07:45:00.000Z"
+      },
+      {
+        "id": 14,
+        "title": "Додати перевірку ролей у DAO",
+        "completed": false,
+        "createdAt": "2025-03-20T12:40:00.000Z"
+      },
+      {
+        "id": 15,
+        "title": "Написати тестові сценарії для контракту",
+        "completed": false,
+        "createdAt": "2025-03-16T10:10:00.000Z",
+        "dueDate": "2025-03-28T23:59:59.999Z"
+      },
+      {
+        "id": 16,
+        "title": "Визначити економічну модель UnityFund",
+        "completed": false,
+        "createdAt": "2025-03-18T15:55:00.000Z"
+      }
+    ]
+  }
+  
