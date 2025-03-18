@@ -1,57 +1,61 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query"
-import { TodoApi } from "./api"
-import styles from "./todo-list.module.css";
-import { useState } from "react";
+import { useTodoList } from "./use-todo-list";
+import { useCreateTodo } from "./use-create-todo";
+import { useDeleteTodo } from "./use-delete-todo";
+import { useToggleTodo } from "./use-toggle-todo";
+import { useSuspenceUser, useUser } from "../auth/use-user";
+import { todoApi } from "./api";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import styles from "./todo-list.module.css"; 
 
-function TodoList() {
-    const [page, setPage] = useState(1)
-    const [enabled, setEnabled] = useState(false)
+export function TodoList() {
+  useSuspenseQuery({
+    ...todoApi.getTodoListQueryOptions({ userId: "3" })
+  });
+  useSuspenseQuery({
+    ...todoApi.getTodoListQueryOptions({ userId: "2" })
+  });
 
-    const { data: todos, isLoading, status, fetchStatus, isError } = useQuery({
-        queryKey: ["tasks", { page }], 
-        queryFn: () => TodoApi.getTodos({ page }),
-        placeholderData: keepPreviousData,
-        enabled
-    })
+  const { todoItems } = useTodoList();
+  const { data: user } = useSuspenceUser();
+  const createTodo = useCreateTodo();
+  const deleteTodo = useDeleteTodo();
+  const { toggleTodo } = useToggleTodo();
 
-    console.log({ status, fetchStatus })
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.title}>
+        Todo List. {user?.login}
+      </h1>
 
-    if (isLoading) return <p className={styles.loading}>Завантаження...</p>;
-    if (isError) return <p className={styles.error}>Помилка завантаження даних!</p>;
+      <form className={styles.form} onSubmit={createTodo.handleCreate}>
+        <input className={styles.input} type="text" name="text" />
+        <button disabled={createTodo.isLoading} className={styles.button}>
+          {createTodo.isLoading ? "Створення..." : "Створити"}
+        </button>
+      </form>
 
-    return (
-        <div className={styles.container}> 
-            <h3 className={styles.title}>Todo List</h3>
-            <button onClick={() => setEnabled(e => !e)}>Togggle enabled</button>
-            <ul className={styles.list}>
-                {todos?.data.map((todo) => (
-                    <li key={todo.id} className={styles.task}>
-                        <span className={todo.completed ? styles.completed : ""}>
-                            {todo.title}
-                        </span>
-                        <span className={styles.date}>{new Date(todo.createdAt).toLocaleDateString()}</span>
-                    </li>
-                ))}
-            </ul>
-            <div className={styles.pagination}>
-                <button 
-                    className={styles.button} 
-                    onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-                    disabled={page === 1}
-                >
-                    Попередня
-                </button>
-                <span className={styles.page}>Сторінка {page}</span>
-                <button 
-                    className={styles.button} 
-                    onClick={() => setPage((prev) => prev + 1)}
-                    disabled={!todos?.next} 
-                >
-                    Наступна
-                </button>
-            </div>
-        </div>
-    );
+      <div className={styles.todoList}>
+        {todoItems?.map(todo => (
+          <div className={styles.todoItem} key={todo.id}>
+            <input
+              className={styles.checkbox}
+              type="checkbox"
+              checked={todo.done}
+              onChange={() => toggleTodo(todo.id, todo.done)}
+            />
+
+            {todo.text}
+
+            <button
+              disabled={deleteTodo.getIsPending(todo.id)}
+              onClick={() => deleteTodo.handleDelete(todo.id)}
+              className={styles.deleteButton}
+            >
+              {deleteTodo.getIsPending(todo.id) ? "Видалення..." : "Видалити"}
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
-
-export default TodoList

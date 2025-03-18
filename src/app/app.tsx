@@ -1,16 +1,25 @@
-import { QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { queryClient } from '../shared/api/query-client'
-import TodoList from '../modules/todo/todo-list'
+import { Login } from "../modules/auth/login";
+import { LogoutButton } from "../modules/auth/logout-button";
+import { useUser } from "../modules/auth/use-user";
+import { prefetchTodoList } from "../modules/todo/prefetch-todo-list";
+import { TodoList } from "../modules/todo/todo-list";
 
-function App() {
+export function App() {
+  const user = useUser();
 
-  return (
-    <QueryClientProvider client={queryClient}>
-        <TodoList />
-        <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
-  )
+  if (user.isLoading) {
+    return <div>Loading</div>;
+  }
+
+  if (user.data) {
+    prefetchTodoList();
+
+    return (
+      <>
+        <LogoutButton /> <TodoList />
+      </>
+    );
+  }
+
+  return <Login />;
 }
-
-export default App

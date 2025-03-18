@@ -3,20 +3,20 @@ import { store } from "../../shared/redux";
 import { authApi } from "../auth/api";
 import { authSlice } from "../auth/auth.slice";
 import { prefetchAuth } from "../auth/prefetch";
-import { todoListApi } from "./api";
+import { todoApi } from "./api";
 
 export const prefetchTodoList = () => {
   const userId = authSlice.selectors.userId(store.getState());
   if (userId) {
     prefetchAuth();
     queryClient.prefetchQuery(
-      todoListApi.getTodoListQueryOptions({ userId: userId })
+      todoApi.getTodoListQueryOptions({ userId: userId })
     );
     queryClient.prefetchQuery(
-      todoListApi.getTodoListQueryOptions({ userId: "2" })
+      todoApi.getTodoListQueryOptions({ userId: "2" })
     );
     queryClient.prefetchQuery(
-      todoListApi.getTodoListQueryOptions({ userId: "3" })
+      todoApi.getTodoListQueryOptions({ userId: "3" })
     );
   }
 };

@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { todoApi } from "./api";
-// import { useSuspenceUser } from "../auth/use-user";
+import { useSuspenceUser } from "../auth/use-user";
 
 export function useDeleteTodo() {
   const queryClient = useQueryClient();
 
-//   const user = useSuspenceUser();
+  const user = useSuspenceUser();
 
   const deleteTodoMutation = useMutation({
     mutationFn: todoApi.deleteTodo,
