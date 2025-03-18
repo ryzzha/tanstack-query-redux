@@ -1,7 +1,7 @@
 import { QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { queryClient } from '../shared/api/query-client'
-import TodoList from '../modules/todo-list'
+import TodoList from '../modules/todo/todo-list'
 
 function App() {
 
